@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AZ kviz</title>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/honeycomb-grid@3.1.7/dist/honeycomb.min.js"
+    ></script>
+  </head>
+  <body>
+    <h1>AZ kviz tactics</h1>
+    <div id="playerTurnHeader">Player turn:</div>
+    <!-- <div class="hexagon"></div> -->
+    <div id="playerTurn" style="padding-left: 0px;">Start</div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="winner">text</p>
+      </div>
+    </div>
+    <div id="board"></div>
+    <button onclick="location.reload();return false;">Restart</button>
+    <script src="azkviz.js"></script>
+    <script src="borderHandler.js"></script>
+  </body>
+</html>

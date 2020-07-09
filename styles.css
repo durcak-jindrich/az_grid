@@ -1,0 +1,108 @@
+h1 {
+  color: #111;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 64px;
+  margin: 0 0 0;
+  padding: 10px 30px;
+}
+
+#playerTurnHeader,
+#playerTurn {
+  color: #111;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 45px;
+  margin: 0 0 0;
+  padding: 0px 30px;
+  display: inline;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Hexagon */
+.hexagon {
+  position: absolute;
+  width: 40px;
+  height: 23.09px;
+  background-color: aquamarine;
+  margin: 11.55px 0;
+  display: inline;
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+}
+
+.hexagon:before {
+  bottom: 100%;
+  border-bottom: 11.55px solid aquamarine;
+}
+
+.hexagon:after {
+  top: 100%;
+  border-top: 11.55px solid aquamarine;
+}
+
+/* Button */
+button {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border: 0.1em solid #111010;
+  margin: 0 0.3em 0.3em 7.5em;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 16px;
+  color: #000000;
+  text-align: center;
+  transition: all 0.2s;
+}
+button:hover {
+  color: #000000;
+  background-color: #b3aeae;
+}
