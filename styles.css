@@ -20,6 +20,18 @@ h1 {
   display: inline;
 }
 
+.slidecontainer {
+  color: #111;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 0px 30px;
+}
+
+.slider{
+    width: 250px;
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */

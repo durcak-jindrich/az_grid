@@ -1,11 +1,24 @@
 //draw triangle
 let playerOneTurn = true;
+var slider = document.getElementById("myRange");
+var answerPrecissionLimit = document.getElementById("demo");
+answerPrecissionLimit.innerHTML = slider.value;
+slider.oninput = function() {
+    answerPrecissionLimit.innerHTML = this.value;
+}
 const draw = SVG().addTo('#board').size(500, 350);
 const Hex = Honeycomb.extendHex({ 
     size: 25,
     highlight() {
-        let { x, y } = this.toPoint();    
-        if(this.draw === undefined || this.draw.node.attributes[2].value === 'white') {
+        let { x, y } = this.toPoint();
+        const answerPrecission = Math.random()*100;
+        if(answerPrecission > Number(answerPrecissionLimit.innerText)){
+            //Wrong answer -> grey tile
+            this.draw = draw
+                .polygon(corners.map(({ x, y }) => `${x},${y}`))
+                .fill({ opacity: 1, color: 'grey'})
+                .translate(x, y);
+        } else if(this.draw === undefined || this.draw.node.attributes[2].value === 'white' || this.draw.node.attributes[2].value === 'grey') {
             // fill hex
             this.draw = draw
                 .polygon(corners.map(({ x, y }) => `${x},${y}`))
@@ -42,6 +55,7 @@ grid.forEach(hex => {
 document.addEventListener('click', ({ offsetX, offsetY }) => {
     const hexCoordinates = Grid.pointToHex([offsetX, offsetY]);
     const hex = grid.get(hexCoordinates);
+    
     if (hex) {
         hex.highlight();
         if(checkCompletion(hex, grid)){

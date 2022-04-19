@@ -38,7 +38,7 @@ borderInfo[6][7] = {left:false, right:true, down:true};
 function checkCompletion(hex,grid){
     //resolve the current hex
     const color = hex.draw.node.attributes[2].value;
-    if(color == 'white'){return false;}
+    if(color == 'white' || color == 'grey'){return false;}
     let visitedHexes = [hex];
     let currentHexes = [hex];
     //gradually get hexes of the same color that are connected to the current hex
