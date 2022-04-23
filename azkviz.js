@@ -12,29 +12,39 @@ const Hex = Honeycomb.extendHex({
     highlight() {
         let { x, y } = this.toPoint();
         const answerPrecission = Math.random()*100;
-        if(answerPrecission > Number(answerPrecissionLimit.innerText)){
-            //Wrong answer -> grey tile
-            this.draw = draw
-                .polygon(corners.map(({ x, y }) => `${x},${y}`))
-                .fill({ opacity: 1, color: 'grey'})
-                .translate(x, y);
-        } else if(this.draw === undefined || this.draw.node.attributes[2].value === 'white' || this.draw.node.attributes[2].value === 'grey') {
-            // fill hex
-            this.draw = draw
-                .polygon(corners.map(({ x, y }) => `${x},${y}`))
-                .fill({ opacity: 1, color: playerOneTurn?'aquamarine':'red'})
-                .translate(x, y);
+        if(this.draw === undefined || this.draw.node.attributes[2].value === 'white') {
+            if(answerPrecission > Number(answerPrecissionLimit.innerText)){
+                //Wrong answer -> grey tile
+                this.draw = fillHexTile('grey', x, y)
+            } else {
+                // correct answer -> filed with color
+                this.draw = fillHexTile(playerOneTurn?'aquamarine':'red', x, y)
+            }
+        } else if(this.draw.node.attributes[2].value === 'grey') {
+            // when selecting grey tile, there is 50% chance for winning it (just like AZ kviz)
+            const correctChoice = Math.random() < 0.5;
+            if(correctChoice){
+                this.draw = fillHexTile(playerOneTurn?'aquamarine':'red', x, y)
+            } else {
+                this.draw = fillHexTile(playerOneTurn?'red':'aquamarine', x, y)
+                playerOneTurn = !playerOneTurn; 
+            }
         } else {
-            // fill hex
-            this.draw = draw
-                .polygon(corners.map(({ x, y }) => `${x},${y}`))
-                .fill({ opacity: 1, color: 'white' })
-                .translate(x, y);
+            // tiles with blue/red color are reset to white
+            this.draw = fillHexTile('white', x, y)
         }
         //redraw border
         draw.use(hexSymbol).translate(x, y);
     } 
 })
+
+function fillHexTile(color, x, y){
+    return draw
+        .polygon(corners.map(({ x, y }) => `${x},${y}`))
+        .fill({ opacity: 1, color: color })
+        .translate(x, y);
+}
+
 const Grid = Honeycomb.defineGrid(Hex)
 const corners = Hex().corners()
 const hexSymbol = draw.symbol()
