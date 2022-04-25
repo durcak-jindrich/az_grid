@@ -8,6 +8,11 @@ h1 {
   padding: 10px 30px;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 #playerTurnHeader,
 #playerTurn {
   color: #111;
