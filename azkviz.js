@@ -1,7 +1,7 @@
 //draw triangle
 let playerOneTurn = true;
 var slider = document.getElementById("myRange");
-var answerPrecissionLimit = document.getElementById("demo");
+var answerPrecissionLimit = document.getElementById("precission");
 answerPrecissionLimit.innerHTML = slider.value;
 slider.oninput = function() {
     answerPrecissionLimit.innerHTML = this.value;
@@ -27,7 +27,7 @@ const Hex = Honeycomb.extendHex({
                 this.draw = fillHexTile(playerOneTurn?'aquamarine':'red', x, y)
             } else {
                 this.draw = fillHexTile(playerOneTurn?'red':'aquamarine', x, y)
-                playerOneTurn = !playerOneTurn; 
+                playerOneTurn = !playerOneTurn;
             }
         } else {
             // tiles with blue/red color are reset to white
@@ -43,6 +43,16 @@ function fillHexTile(color, x, y){
         .polygon(corners.map(({ x, y }) => `${x},${y}`))
         .fill({ opacity: 1, color: color })
         .translate(x, y);
+}
+
+function changePlayerTurn(){
+    playerOneTurn = !playerOneTurn;
+    let turn = document.getElementById('playerTurn');
+    turn.innerHTML = '';
+    turn.style.backgroundColor = playerOneTurn?'aquamarine':'red';
+    turn.style.borderColor = 'black';
+    turn.style.borderWidth = '2px';
+    turn.style.borderStyle = 'solid';
 }
 
 const Grid = Honeycomb.defineGrid(Hex)
@@ -80,15 +90,6 @@ document.addEventListener('click', ({ offsetX, offsetY }) => {
                 modal.style.display = "none";
             }
         }
-        playerOneTurn = !playerOneTurn;
-        let turn = document.getElementById('playerTurn');
-        // turn.innerHTML = playerOneTurn?'Blue':'Red';
-        turn.innerHTML = '';
-        turn.style.backgroundColor = playerOneTurn?'aquamarine':'red';
-        turn.style.borderColor = 'black';
-        turn.style.borderWidth = '2px';
-        turn.style.borderStyle = 'solid';
-        // let turn = document.getElementsByClassName('hexagon')[0];
-        // turn.style.color=playerOneTurn?'blue':'red';
+        changePlayerTurn();
     }
   })
