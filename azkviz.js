@@ -71,8 +71,9 @@ grid.forEach(hex => {
     draw.use(hexSymbol).translate(x, y)
 })
 
-//handle actions
-document.addEventListener('click', ({ offsetX, offsetY }) => {
+//handle board actions
+const board = document.getElementById('board');
+board.addEventListener('click', ({ offsetX, offsetY }) => {
     const hexCoordinates = Grid.pointToHex([offsetX, offsetY]);
     const hex = grid.get(hexCoordinates);
     
